@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using SkinetAppAPI.Dtos;
 using SkinetAppAPI.Errors;
+using SkinetAppAPI.Helpers;
 
 namespace SkinetAppAPI.Controllers
 {
@@ -28,13 +29,22 @@ namespace SkinetAppAPI.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDtos>>> GetProducts()
+        public async Task<ActionResult<Pagination<ProductToReturnDtos>>> GetProducts(
+          [FromQuery]ProductSpecParams productParams)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
+
+            var countSpec = new ProductWithFiltersForCountSpecification(productParams);
+
+            var totalItems = await _productsRepo.CountAsync(countSpec);
 
             var products = await _productsRepo.ListAsync(spec);
-            return Ok(_mapper
-                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDtos>>(products));
+
+            var data = _mapper
+                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDtos>>(products);
+
+            return Ok(new Pagination<ProductToReturnDtos>(productParams.PageIndex,
+                productParams.PageSize,totalItems,data));
           
         }
 
