@@ -28,6 +28,7 @@ namespace SkinetAppAPI.Controllers
             _productTypeRepo = productTypeRepo;
             _mapper = mapper;
         }
+
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDtos>>> GetProducts(
           [FromQuery]ProductSpecParams productParams)
@@ -70,7 +71,7 @@ namespace SkinetAppAPI.Controllers
         }
 
         [HttpGet("types")]
-        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductTypes()
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
             return Ok(await _productTypeRepo.ListAllAsync());
         }

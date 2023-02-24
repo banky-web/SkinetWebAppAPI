@@ -41,6 +41,7 @@ namespace SkinetAppAPI.Controllers
         {
             return BadRequest(new ApiResponse(400));
         }
+
         [HttpGet("badrequest/{id}")]
         public ActionResult GetNotFoundRequest(int id)
         {
