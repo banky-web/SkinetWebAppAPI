@@ -30,7 +30,7 @@ namespace SkinetAppAPI.Controllers
 
         [HttpDelete]
         public async Task DeleteBasketAsync(string id)
-        {
+         {
             await _basketRepository.DeleteBasketAsync(id);
         }
         
