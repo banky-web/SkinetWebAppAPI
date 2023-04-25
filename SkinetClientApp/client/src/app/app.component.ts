@@ -10,7 +10,7 @@ import { AccountService } from './account/account.service';
 export class AppComponent  implements OnInit {
   title = 'Skinet';
  
-  constructor(private basketService: BasketService, private accountService:AccountService){}
+  constructor(private basketService: BasketService, private accountService: AccountService){}
 
   
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class AppComponent  implements OnInit {
   
 
   loadCurrentUser(){
-    const token =localStorage.getItem('token');
-    this.accountService.loadCurrentUser(token).subscribe();
+    const token = localStorage.getItem('token');
+   this.accountService.loadCurrentUser(token).subscribe();
   }
 }
