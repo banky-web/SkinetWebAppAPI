@@ -10,12 +10,17 @@ import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { OrderDetailedComponent } from './order-detailed/order-detailed.component';
+
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent
+   
+  
    
   ],
   imports: [
