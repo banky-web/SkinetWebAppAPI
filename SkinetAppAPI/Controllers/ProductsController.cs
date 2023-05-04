@@ -29,6 +29,8 @@ namespace SkinetAppAPI.Controllers
             _mapper = mapper;
         }
 
+
+        [Cached(600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDtos>>> GetProducts(
           [FromQuery]ProductSpecParams productParams)
@@ -49,6 +51,8 @@ namespace SkinetAppAPI.Controllers
           
         }
 
+
+        [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
@@ -63,6 +67,8 @@ namespace SkinetAppAPI.Controllers
            
         }
 
+
+        [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
@@ -70,6 +76,8 @@ namespace SkinetAppAPI.Controllers
       
         }
 
+
+        [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
