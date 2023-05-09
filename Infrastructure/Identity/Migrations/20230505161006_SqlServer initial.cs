@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Identity.Migrations
 {
-    public partial class identityInitial : Migration
+    public partial class SqlServerinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

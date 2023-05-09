@@ -18,6 +18,28 @@ services:
       - 8081:8081
     depends_on:
       - redis
-    
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: appuser
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/data    
+
+
+  sql-server-db:
+    image: mcr.microsoft.com/windows:ltsc2019
+    environment:
+      SA_PASSWORD: "secret"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql-server-db-data:/data 
+
 volumes:
   redis-data:
+  postgres-data:

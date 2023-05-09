@@ -13,14 +13,18 @@ namespace SkinetAppAPI.Controllers
 {
     public class PaymentsController : BaseApiController
     {
-        private const string WhSecret = "whsec_befe0c7a6a5a87d80036e4c9f1678b9909778e415d51e34ef8d395852656492f";
+        private readonly string _whSecret;
         private readonly IPaymentService _paymentService;
         private readonly ILogger<PaymentsController> _logger;
+        private readonly IConfiguration _config;
 
-        public PaymentsController(IPaymentService paymentService, ILogger<PaymentsController> logger)
+        public PaymentsController(IPaymentService paymentService,
+            ILogger<PaymentsController> logger, IConfiguration config)
         {
             _paymentService = paymentService;
             _logger = logger;
+            _config = config;
+            _whSecret = config.GetSection("StripeSettings:WhSecret").Value;
         }
 
         [Authorize]
@@ -39,7 +43,7 @@ namespace SkinetAppAPI.Controllers
         {
             var json = await new StreamReader(Request.Body).ReadToEndAsync();
             var stripeEvent = EventUtility.ConstructEvent(json,
-                Request.Headers["Stripe-Signature"], WhSecret);
+                Request.Headers["Stripe-Signature"], _whSecret);
 
 
             PaymentIntent intent;

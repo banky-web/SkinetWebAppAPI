@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20230405115118_OrderEntityAdded")]
-    partial class OrderEntityAdded
+    [Migration("20230505160933_SqlServer initial")]
+    partial class SqlServerinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
